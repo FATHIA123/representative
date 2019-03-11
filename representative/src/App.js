@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+// import {  Route , Link, Switch } from 'react-router-dom';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      senateData: '',
+      houseData: '',
+    };
+  };
+
+  axios.get('https://api.propublica.org/congress/v1/115/senate/members.json', { headers: { 'X-API-Key': 'Kj3LA8ihrq1u54ZYNFmQ2eqG0Qa1a85K9y1xFIXl'}});
+  
+  componentDidMount() {
+    console.log("Play: Component is mounting");
+    axios.get('https://api.propublica.org/congress/v1/115/senate/members.json{ header: { "X-API-Key: Kj3LA8ihrq1u54ZYNFmQ2eqG0Qa1a85K9y1xFIXl"}')
+    .then(json => {
+        this.setState({ senateData: json.data });
+    });
+}
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+             <nav >
+               
+                <h1 className= "header">Get To Know Who Represents You</h1>
+                <h2>Virginia Representatives</h2>
+             </nav>
+           <main> </main>
+
+             <footer className="footer"> 
+                <li>Source: </li>
+                <li>Created By: </li>
+             </footer>
       </div>
     );
   }
